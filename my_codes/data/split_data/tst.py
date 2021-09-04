@@ -3,17 +3,16 @@ from Bio import SeqIO
 
 def count_data_by_id(file_name, class_label):
     count = 0
-    query = "|" + class_label
+    query = "10|1"
     for seq_record in SeqIO.parse(open(file_name, mode='r'), 'fasta'):
 
         if query in seq_record.id:
-            count += 1
-
-    return count
+            print(seq_record.seq)
+            print(seq_record.id)
+            return len(seq_record.seq)
 
 
 # --------------------------------------------
-file_in = '../../data/ACP_dataset/fasta/ACP-Mixed-40.fasta'
+file_in = 'ACP_100_pos.fasta'
 # --------------------------------------------
-print("ACP (1) count data: " + str(count_data_by_id(file_in, "1")))
-print("non-ACP (0) count data: " + str(count_data_by_id(file_in, "0")))
+print(str(count_data_by_id(file_in, "1")))
